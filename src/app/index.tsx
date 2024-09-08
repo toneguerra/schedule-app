@@ -7,14 +7,13 @@ export default function Home(){
     const taskTable = useTaskTable();
 
     const [tasks, setTasks] = useState<TaskTable[]>([])
-    const [description, setDescription] = useState("")
-
-    const [dtp, setDtp] = useState(new Date());
-    const [date, setDate] = useState(dtp.toString())
+    const [description, setDescription] = useState("") 
+    const [date, setDate] = useState("")
 
     const [textSearch, setTextSearch] = useState("")
 
-    
+    /* FUNÇÃO DATETIMEPICKER
+    const [dtp, setDtp] = useState(new Date());
     const [showDtp, setShowDtp] = useState(false);
     const hdChangeDate = (event, selectedDate)=>{
         if (event.type === 'set'){
@@ -27,8 +26,8 @@ export default function Home(){
         console.log(date)
         
         Alert.alert("Datado")
-        
     }
+    */
 
     async function create(){
         try{
@@ -68,12 +67,14 @@ export default function Home(){
                 <TextInput 
                     placeholder = "Data"
                     onChangeText={setDate}
-                    onTouchStart={()=>setShowDtp(true)}
+                    //onTouchStart={()=>setShowDtp(true)}
                     value={date}
                 />
 
                 { 
+                /*
                     showDtp && (<DateTimePicker mode='date' value={dtp || new Date() } onChange={hdChangeDate} display='spinner' />)         
+                */
                 }
 
                 <Button title="Gravar" onPress={create} />
