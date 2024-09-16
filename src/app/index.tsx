@@ -1,7 +1,11 @@
 import { useTaskTable, TaskTable } from '@/database/useTaskTable';
 import DateTimePicker from '@react-native-community/datetimepicker';
+
 import { useEffect, useState } from 'react';
-import { View, Text, TextInput, Alert, Button, FlatList } from 'react-native';
+import { Alert, Button, FlatList, Text, TextInput, View } from 'react-native';
+import { Link, router } from 'expo-router';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
+
 
 export default function Home(){
     const taskTable = useTaskTable();
@@ -56,8 +60,9 @@ export default function Home(){
     },[textSearch])
 
     return (
-        <View style={{flex:1, justifyContent:'center', alignItems:'center', marginTop:20}}>
-            <Text>My Schedules - Tasks</Text>
+        <View className="flex flex-1 w-full bg-slate-100 p-4">
+
+            <Text className="bg-slate-500">My Schedules - Taskss</Text>
 
             <View>
                 <TextInput 
@@ -87,9 +92,22 @@ export default function Home(){
                 data={tasks}
                 keyExtractor={(item)=>String(item.id)}
                 renderItem={({item})=>
-                    <Text>
-                        {item.id} - {item.description} - {item.date}
-                    </Text>}
+                    <View className="flex-row justify-between">
+                        <Text>
+                            {item.id} - {item.description} - {item.date}
+                        </Text>
+
+                        <FontAwesome name="trash-o" size={24} color="red" onPress={()=>router.push({pathname:'./excluir/[id]', params:{id:item.id}})} />
+                        
+                        <Link href={{pathname:'./excluir/[id]', params:{id:item.id}}}>
+                            <FontAwesome name="trash-o" size={24} color="blue" />
+                        </Link>
+
+                        <Link href={`./excluir/${item.id}`}>
+                            <FontAwesome name="trash-o" size={24} color="yellow" />
+                        </Link>
+                    </View>
+                }
             />
 
         </View>

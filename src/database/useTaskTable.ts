@@ -62,6 +62,21 @@ export function useTaskTable(){
     */
 
 
-    return { create, search };
+    async function destroy(id: number){
+        const statement = await database.prepareAsync("DELETE FROM tasks WHERE id = $id");
+
+        try{
+            const result = await statement.executeAsync(
+                {$id: id}
+            );
+        }catch (error) {
+            throw error;
+        }finally{
+            await statement.finalizeAsync();
+        }
+    }
+
+
+    return { create, search, destroy };
 
 }
