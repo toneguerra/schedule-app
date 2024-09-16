@@ -2,23 +2,27 @@ import { useTaskTable, TaskTable } from '@/database/useTaskTable';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 import { useEffect, useState } from 'react';
+<<<<<<< HEAD
 import { Alert, Button, FlatList, Text, TextInput, View } from 'react-native';
 import { Link, router } from 'expo-router';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 
+=======
+import { View, Text, Button, FlatList, Alert, TextInput, TouchableHighlight, TouchableHighlightComponent } from 'react-native'
+import Ionicons from '@expo/vector-icons/Ionicons';
+>>>>>>> 13456adb4be3fd86471f3db5cf49bb6a1bceea5d
 
 export default function Home(){
     const taskTable = useTaskTable();
 
     const [tasks, setTasks] = useState<TaskTable[]>([])
-    const [description, setDescription] = useState("")
-
-    const [dtp, setDtp] = useState(new Date());
-    const [date, setDate] = useState(dtp.toString())
+    const [description, setDescription] = useState("") 
+    const [date, setDate] = useState("")
 
     const [textSearch, setTextSearch] = useState("")
 
-    
+    /* FUNÇÃO DATETIMEPICKER
+    const [dtp, setDtp] = useState(new Date());
     const [showDtp, setShowDtp] = useState(false);
     const hdChangeDate = (event, selectedDate)=>{
         if (event.type === 'set'){
@@ -31,8 +35,8 @@ export default function Home(){
         console.log(date)
         
         Alert.alert("Datado")
-        
     }
+    */
 
     async function create(){
         try{
@@ -60,38 +64,69 @@ export default function Home(){
     },[textSearch])
 
     return (
+<<<<<<< HEAD
         <View className="flex flex-1 w-full bg-slate-100 p-4">
 
             <Text className="bg-slate-500">My Schedules - Taskss</Text>
+=======
+        <View className="bg-indigo-900 flex-1 justify-center items-center pl-4 pr-4">
+            <Text className="self-start text-xl text-indigo-100 font-semibold mt-4 mb-4">My Schedules - Tasks</Text>
 
-            <View>
+            <View className="w-full">
+>>>>>>> 13456adb4be3fd86471f3db5cf49bb6a1bceea5d
+
                 <TextInput 
+                    className="border border-indigo-800
+                        bg-indigo-200
+                        rounded-md 
+                        p-1 pl-2 pr-2 mb-4
+                        focus:border-2
+                        focus:bg-indigo-50
+                        focus:border-indigo-500"
                     placeholder = "Descrição da Tarefa"
                     onChangeText={setDescription}
                     value={description}
                 />
+
+
                 <TextInput 
+                    className="border border-indigo-800
+                        bg-indigo-200
+                        rounded-md 
+                        p-1 pl-2 pr-2 mb-4
+                        focus:border-2
+                        focus:bg-indigo-50
+                        focus:border-indigo-500"
                     placeholder = "Data"
                     onChangeText={setDate}
-                    onTouchStart={()=>setShowDtp(true)}
+                    //onTouchStart={()=>setShowDtp(true)}
                     value={date}
                 />
 
                 { 
+                /*
                     showDtp && (<DateTimePicker mode='date' value={dtp || new Date() } onChange={hdChangeDate} display='spinner' />)         
+                */
                 }
 
-                <Button title="Gravar" onPress={create} />
+                <TouchableHighlight onPress={create} className="bg-indigo-800 p-4 rounded-lg ">
+                    <Text className="text-center font-bold text-white">Gravar</Text>
+                </TouchableHighlight>
+
             </View>
 
-            <View>
-                <TextInput placeholder="Pesquisar Tarefa" onChangeText={setTextSearch} />
+            <View className="bg-indigo-400 w-full mt-4 mb-4 p-2 flex-row justify-between items-center ">
+                <TextInput className="border w-11/12  text-white" placeholder="Pesquisar Tarefa" onChangeText={setTextSearch} />
+                <Ionicons className="" name="search" size={24} color="blue" />
             </View>
+
 
             <FlatList
+                className="bg-indigo-950 w-full p-2"
                 data={tasks}
                 keyExtractor={(item)=>String(item.id)}
                 renderItem={({item})=>
+<<<<<<< HEAD
                     <View className="flex-row justify-between">
                         <Text>
                             {item.id} - {item.description} - {item.date}
@@ -106,6 +141,13 @@ export default function Home(){
                         <Link href={`./excluir/${item.id}`}>
                             <FontAwesome name="trash-o" size={24} color="yellow" />
                         </Link>
+=======
+                    <View className="bg-indigo-300 p-2 rounded-lg mb-1 flex-row justify-between items-center">
+                        <Text>
+                            {item.id} - {item.description} - {item.date}
+                        </Text>
+                        <Ionicons name="trash-sharp" size={24} color="red" />
+>>>>>>> 13456adb4be3fd86471f3db5cf49bb6a1bceea5d
                     </View>
                 }
             />
