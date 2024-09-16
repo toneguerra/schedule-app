@@ -2,15 +2,11 @@ import { useTaskTable, TaskTable } from '@/database/useTaskTable';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 import { useEffect, useState } from 'react';
-<<<<<<< HEAD
-import { Alert, Button, FlatList, Text, TextInput, View } from 'react-native';
+import { Alert, Button, FlatList, Text, TextInput, TouchableHighlight, View } from 'react-native';
 import { Link, router } from 'expo-router';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
+import { Ionicons } from '@expo/vector-icons';
 
-=======
-import { View, Text, Button, FlatList, Alert, TextInput, TouchableHighlight, TouchableHighlightComponent } from 'react-native'
-import Ionicons from '@expo/vector-icons/Ionicons';
->>>>>>> 13456adb4be3fd86471f3db5cf49bb6a1bceea5d
 
 export default function Home(){
     const taskTable = useTaskTable();
@@ -64,16 +60,10 @@ export default function Home(){
     },[textSearch])
 
     return (
-<<<<<<< HEAD
-        <View className="flex flex-1 w-full bg-slate-100 p-4">
-
-            <Text className="bg-slate-500">My Schedules - Taskss</Text>
-=======
         <View className="bg-indigo-900 flex-1 justify-center items-center pl-4 pr-4">
             <Text className="self-start text-xl text-indigo-100 font-semibold mt-4 mb-4">My Schedules - Tasks</Text>
 
             <View className="w-full">
->>>>>>> 13456adb4be3fd86471f3db5cf49bb6a1bceea5d
 
                 <TextInput 
                     className="border border-indigo-800
@@ -126,9 +116,8 @@ export default function Home(){
                 data={tasks}
                 keyExtractor={(item)=>String(item.id)}
                 renderItem={({item})=>
-<<<<<<< HEAD
                     <View className="flex-row justify-between">
-                        <Text>
+                        <Text className="text-indigo-100">
                             {item.id} - {item.description} - {item.date}
                         </Text>
 
@@ -141,13 +130,6 @@ export default function Home(){
                         <Link href={`./excluir/${item.id}`}>
                             <FontAwesome name="trash-o" size={24} color="yellow" />
                         </Link>
-=======
-                    <View className="bg-indigo-300 p-2 rounded-lg mb-1 flex-row justify-between items-center">
-                        <Text>
-                            {item.id} - {item.description} - {item.date}
-                        </Text>
-                        <Ionicons name="trash-sharp" size={24} color="red" />
->>>>>>> 13456adb4be3fd86471f3db5cf49bb6a1bceea5d
                     </View>
                 }
             />
