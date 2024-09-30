@@ -76,7 +76,46 @@ export function useTaskTable(){
         }
     }
 
+    async function findId(id: number){
+        const statement = await database.prepareAsync("SELECT * FROM tasks WHERE id = $id");
 
-    return { create, search, destroy };
+        try {
+            const result = await statement.executeAsync<TaskTable>(
+                {$id: id}
+            )
+            const item = await result.getFirstAsync();
+            return item
+        } catch (error) {
+            throw error;
+        }finally{
+            await statement.finalizeAsync();
+        }
+    }
+
+    async function update(data: TaskTable){
+
+        console.log(data)
+        const statement = await database.prepareAsync(
+            "UPDATE tasks SET description = $description, date = $date WHERE id = $id"
+        );
+        console.log(statement)
+        try{
+            const result = await statement.executeAsync(
+                {
+                    $id: data.id,
+                    $description: data.description,
+                    $date: data.date
+
+                }
+            );
+        }catch(error){
+            throw error;
+        }finally{
+            await statement.finalizeAsync;
+        }
+    }
+
+
+    return { create, search, destroy, findId, update };
 
 }

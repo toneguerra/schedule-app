@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { Alert, Button, FlatList, Text, TextInput, TouchableHighlight, View } from 'react-native';
 import { Link, router } from 'expo-router';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
+import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import { Ionicons } from '@expo/vector-icons';
 
 
@@ -122,7 +123,9 @@ export default function Home(){
                         </Text>
 
                         <FontAwesome name="trash-o" size={24} color="red" onPress={()=>router.push({pathname:'./excluir/[id]', params:{id:item.id}})} />
-                        
+                        <FontAwesome6 name="edit" size={24} color="black" onPress={()=>router.push({pathname:'./update/[id]', params:{id:item.id}})}/>
+
+                        {/*
                         <Link href={{pathname:'./excluir/[id]', params:{id:item.id}}}>
                             <FontAwesome name="trash-o" size={24} color="blue" />
                         </Link>
@@ -130,6 +133,7 @@ export default function Home(){
                         <Link href={`./excluir/${item.id}`}>
                             <FontAwesome name="trash-o" size={24} color="yellow" />
                         </Link>
+                        */}
                     </View>
                 }
             />
